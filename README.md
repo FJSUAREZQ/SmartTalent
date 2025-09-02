@@ -338,6 +338,10 @@ ng serve --prod
  ┃   ┣ 📂 components    # Componentes standalone
  ┃   ┣ 📂 pages         # Páginas (create, getAllPaged, update)
  ┃   ┗ 📂 services      # Servicios
+ ┃	   ┗ 📂 api       # Servicios Http
+ ┃	   ┗ 📂 repositories       # Repositorio interface y su implement.  
+ ┃   ┗ 📂 models        # Modelos de interfaces
+ ┃   ┗ 📂 usesCases     # Casos de uso
 ```
 
 ## Funcionalidades
