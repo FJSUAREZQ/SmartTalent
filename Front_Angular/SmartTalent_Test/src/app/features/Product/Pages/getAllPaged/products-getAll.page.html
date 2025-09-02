@@ -1,0 +1,71 @@
+<div class="container my-4">
+  <h2 class="mb-4">Product List</h2>
+
+  @if(isLoading()){
+  <span>No products found</span>
+  }@else {
+  <div class="table-responsive">
+    <table class="table table-striped table-hover table-bordered align-middle">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col" class="text-center">Id</th>
+          <th scope="col" class="text-center">Name</th>
+          <th scope="col" class="text-center">Description</th>
+          <th scope="col" class="text-center">Price</th>
+          <th scope="col" class="text-center">Modified Date</th>
+          <th scope="col" class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @if (products()?.length && products()!.length > 0) { 
+          @for(product of products(); track product.id) {
+        <tr>
+          <td class="text-center">{{ product.id }}</td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.description }}</td>
+          <td>{{ product.price | currency }}</td>
+          <td>{{ product.modifiedAt | date }}</td>
+          <td class="text-center">
+            <button
+              class="btn btn-danger btn-sm mx-1" title="Delete Product" (click)="deleteProduct(product.id, product.name)">
+              <i class="bi bi-trash"></i>
+            </button>
+            <button
+              class="btn btn-primary btn-sm" title="Update Product" (click)="updateProduct(product.id)">
+              <i class="bi bi-pencil"></i>
+            </button>
+          </td>
+        </tr>
+        } }
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PAGINATION - BOOTSTRAP -->
+  <nav aria-label="Page navigation">
+    @if (totalPages() > 1) {
+    <ul class="pagination justify-content-center shadow-sm rounded">
+      <!-- Botón Previous -->
+      <li class="page-item" [class.disabled]="!hasPreviousPage()">
+        <button class="page-link" (click)="onPrevious()">Previous</button>
+      </li>
+
+      <!-- Numbers for pages -->
+      @for (page of [].constructor(totalPages()); track $index) {
+      <li class="page-item" [class.active]="pageNumber() === $index + 1">
+        <button class="page-link" (click)="onPageSelect($index + 1)">
+          {{ $index + 1 }}
+        </button>
+      </li>
+      }
+
+      <!-- Botón Next -->
+      <li class="page-item" [class.disabled]="!hasNextPage()">
+        <button class="page-link" (click)="onNext()">Next</button>
+      </li>
+    </ul>
+    }
+  </nav>
+
+  }
+</div>

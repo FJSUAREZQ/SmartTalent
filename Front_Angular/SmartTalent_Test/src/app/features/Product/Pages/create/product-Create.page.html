@@ -1,0 +1,14 @@
+<div class="container mt-5">
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      <h1 class="h4 mb-0">Create Product</h1>
+    </div>
+    <div class="card-body">
+      <app-product-component
+        [productInComponent]="productToChild()"
+        (productOutComponent)="handleSave($event)"
+        (cancelOutComponent)="handleCancel($event)">
+      </app-product-component>
+    </div>
+  </div>
+</div>
